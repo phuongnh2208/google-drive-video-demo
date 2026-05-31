@@ -9,4 +9,13 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('testdb')
+  async testDb() {
+    const count = await this.appService.testdb();
+    return {
+      db: 'ok',
+      userCount: count,
+    };
+  }
 }

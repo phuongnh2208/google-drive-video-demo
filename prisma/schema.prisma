@@ -16,3 +16,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AccessLevel {
+  PUBLIC
+  PRIVATE
+  ALLOWED
+}
+
+model User {
+  id            Int @id @default(autoincrement())
+  googleId      String @unique
+  email         String @unique
+  name          String
+  picture       String @db.Text
+  createAt      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  accessLogs    VideoAccessLog[]
+}
+
+model Video {
+  id            Int @id @default(autoincrement())
+  title         String
+  driveFileId   String @unique
+  embedUrl      String @db.Text
+  accessLevel   AccessLevel @default(PUBLIC)
+  createAt      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  accessLogs    VideoAccessLog[]
+}
+
+model AllowedEmail {
+  id            Int @id @default(autoincrement())
+  email         String @unique
+  isActive      Boolean @default(true)
+  createAt      DateTime @default(now())
+}
+
+model VideoAccessLog {
+  id            Int @id @default(autoincrement())
+  userId        Int?
+  videoId       Int
+  accessedAt    DateTime @default(now())
+
+  user          User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  video         Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+}
