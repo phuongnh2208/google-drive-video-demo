@@ -1,0 +1,46 @@
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { FindAllVideosUseCase } from './use-cases/find-all-video.usecase';
+import { FindVideoByIdUseCase } from './use-cases/find-video-by-id.usecase';
+import { GetPublicVideosUseCase } from './use-cases/get-public-videos.usecase';
+import { GetPrivateVideosUseCase } from './use-cases/get-private-videos.usecase';
+import { GetAllowedVideosUseCase } from './use-cases/get-allowed-videos.usecase';
+import { AuthGuard } from './guards/auth.guard';
+import { EmailWhitelistGuard } from './guards/email-whitelist.guard';
+
+@Controller('videos')
+export class VideoController {
+  constructor(
+    private readonly findAllVideoUseCase: FindAllVideosUseCase,
+    private readonly findVideoByIdUseCase: FindVideoByIdUseCase,
+    private readonly getPublicVideosUseCase: GetPublicVideosUseCase,
+    private readonly getPrivateVideosUseCase: GetPrivateVideosUseCase,
+    private readonly getAllowedVideosUseCase: GetAllowedVideosUseCase,
+  ) {}
+
+  @Get()
+  async findAll() {
+    return await this.findAllVideoUseCase.executive();
+  }
+
+  @Get('public')
+  async findPublic() {
+    return await this.getPublicVideosUseCase.executive();
+  }
+
+  @Get('private')
+  @UseGuards(AuthGuard)
+  async findPrivate() {
+    return await this.getPrivateVideosUseCase.executive();
+  }
+
+  @Get('allowed')
+  @UseGuards(AuthGuard, EmailWhitelistGuard)
+  async findAllowed() {
+    return await this.getAllowedVideosUseCase.executive();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return await this.findVideoByIdUseCase.executive(Number(id));
+  }
+}
