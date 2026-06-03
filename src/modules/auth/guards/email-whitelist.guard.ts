@@ -2,7 +2,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { AppException } from 'src/common/execptions/app.exception';
-import { VideoError } from '../constants/video.errors';
+import { AuthError } from '../constants/auth.errors';
 
 @Injectable()
 export class EmailWhitelistGuard implements CanActivate {
@@ -12,12 +12,12 @@ export class EmailWhitelistGuard implements CanActivate {
     const req = context.switchToHttp().getRequest();
     const user = req.user;
     if (!user || !user.email) {
-      throw new AppException(VideoError.UNAUTHORIZED);
+      throw new AppException(AuthError.UNAUTHORIZED);
     }
     const allowed = await this.prisma.allowedEmail.findFirst({
       where: { email: user.email, isActive: true },
     });
-    if (!allowed) throw new AppException(VideoError.FORBIDDEN_EMAIL);
+    if (!allowed) throw new AppException(AuthError.EMAIL_NOT_ALLOWED);
     return true;
   }
 }

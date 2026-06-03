@@ -4,8 +4,8 @@ import { FindVideoByIdUseCase } from './use-cases/find-video-by-id.usecase';
 import { GetPublicVideosUseCase } from './use-cases/get-public-videos.usecase';
 import { GetPrivateVideosUseCase } from './use-cases/get-private-videos.usecase';
 import { GetAllowedVideosUseCase } from './use-cases/get-allowed-videos.usecase';
-import { AuthGuard } from './guards/auth.guard';
-import { EmailWhitelistGuard } from './guards/email-whitelist.guard';
+import { AuthGuard } from '../auth/guards/auth.guard';
+import { EmailWhitelistGuard } from '../auth/guards/email-whitelist.guard';
 
 @Controller('videos')
 export class VideoController {
@@ -34,7 +34,7 @@ export class VideoController {
   }
 
   @Get('allowed')
-  @UseGuards(AuthGuard, EmailWhitelistGuard)
+  @UseGuards(EmailWhitelistGuard)
   async findAllowed() {
     return await this.getAllowedVideosUseCase.executive();
   }

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '../videos/guards/auth.guard';
+import { AuthGuard } from '../auth/guards/auth.guard';
 import { GetMeUseCase } from './use-cases/get-me.use-case';
 
 type RequestWithUser = {
