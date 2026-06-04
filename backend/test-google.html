@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Login Test</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at top, #1e293b, #0f172a 60%);
+      }
+      .card {
+        width: min(720px, calc(100vw - 32px));
+        padding: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 20px;
+        background: rgba(15, 23, 42, 0.72);
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+      }
+      p {
+        margin: 0 0 16px;
+        color: #94a3b8;
+        line-height: 1.5;
+      }
+      code, pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .row {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .inputRow {
+        display: grid;
+        gap: 8px;
+      }
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: rgba(15, 23, 42, 0.95);
+        color: #e2e8f0;
+        outline: none;
+      }
+      button {
+        width: fit-content;
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 999px;
+        background: #2563eb;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #1d4ed8;
+      }
+      .hint {
+        font-size: 14px;
+        color: #cbd5e1;
+      }
+      .token {
+        margin-top: 16px;
+        padding: 16px;
+        border-radius: 14px;
+        background: rgba(30, 41, 59, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        min-height: 96px;
+      }
+      .status {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #a5f3fc;
+      }
+      .warn {
+        color: #fca5a5;
+      }
+    </style>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Google Login Test</h1>
+      <p>
+        Open this page from <code>http://localhost</code> (not <code>file://</code>), then click the button and copy the
+        <code>idToken</code> from the output below.
+      </p>
+      <div class="row">
+        <div class="inputRow">
+          <label for="clientIdInput">Google Client ID</label>
+          <input id="clientIdInput" placeholder="PASTE_YOUR_GOOGLE_CLIENT_ID_HERE" />
+          <button id="initButton" type="button">Load Google Button</button>
+        </div>
+        <div id="buttonDiv"></div>
+        <div class="hint">
+          Paste your real Client ID above, then click <strong>Load Google Button</strong>.
+        </div>
+      </div>
+      <div class="token">
+        <strong>idToken</strong>
+        <pre id="tokenOutput">Waiting for login...</pre>
+      </div>
+      <div id="status" class="status">Loading Google button...</div>
+    </main>
+
+    <script>
+      const clientIdInput = document.getElementById('clientIdInput');
+      const initButton = document.getElementById('initButton');
+      const tokenOutput = document.getElementById('tokenOutput');
+      const statusEl = document.getElementById('status');
+
+      function showToken(token) {
+        tokenOutput.textContent = token || 'No token received yet.';
+      }
+
+      window.handleCredentialResponse = function handleCredentialResponse(response) {
+        showToken(response.credential);
+        statusEl.textContent = 'Token received. You can paste it into your API request.';
+      };
+
+      function initGoogleButton() {
+        const clientId = clientIdInput.value.trim();
+
+        if (!clientId) {
+          statusEl.innerHTML = '<span class="warn">Paste your Google Client ID first.</span>';
+          return;
+        }
+
+        if (!window.google || !google.accounts || !google.accounts.id) {
+          statusEl.innerHTML = '<span class="warn">Google script not loaded yet. Refresh the page.</span>';
+          return;
+        }
+
+        document.getElementById('buttonDiv').innerHTML = '';
+        google.accounts.id.initialize({
+          client_id: clientId,
+          callback: handleCredentialResponse,
+        });
+        google.accounts.id.renderButton(document.getElementById('buttonDiv'), {
+          theme: 'outline',
+          size: 'large',
+          shape: 'pill',
+        });
+        statusEl.textContent = 'Click the Google button to get your idToken.';
+      }
+
+      window.addEventListener('load', () => {
+        initButton.addEventListener('click', initGoogleButton);
+        statusEl.textContent = 'Paste your Client ID, then click Load Google Button.';
+      });
+    </script>
+  </body>
+</html>
