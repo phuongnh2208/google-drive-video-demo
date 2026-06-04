@@ -34,7 +34,7 @@ export class VideoController {
   }
 
   @Get('allowed')
-  @UseGuards(EmailWhitelistGuard)
+  @UseGuards(AuthGuard, EmailWhitelistGuard)
   async findAllowed() {
     return await this.getAllowedVideosUseCase.executive();
   }
