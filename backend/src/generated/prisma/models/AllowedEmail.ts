@@ -36,6 +36,7 @@ export type AllowedEmailSumAggregateOutputType = {
 export type AllowedEmailMinAggregateOutputType = {
   id: number | null
   email: string | null
+  videoClass: $Enums.VideoClass | null
   isActive: boolean | null
   createAt: Date | null
 }
@@ -43,6 +44,7 @@ export type AllowedEmailMinAggregateOutputType = {
 export type AllowedEmailMaxAggregateOutputType = {
   id: number | null
   email: string | null
+  videoClass: $Enums.VideoClass | null
   isActive: boolean | null
   createAt: Date | null
 }
@@ -50,6 +52,7 @@ export type AllowedEmailMaxAggregateOutputType = {
 export type AllowedEmailCountAggregateOutputType = {
   id: number
   email: number
+  videoClass: number
   isActive: number
   createAt: number
   _all: number
@@ -67,6 +70,7 @@ export type AllowedEmailSumAggregateInputType = {
 export type AllowedEmailMinAggregateInputType = {
   id?: true
   email?: true
+  videoClass?: true
   isActive?: true
   createAt?: true
 }
@@ -74,6 +78,7 @@ export type AllowedEmailMinAggregateInputType = {
 export type AllowedEmailMaxAggregateInputType = {
   id?: true
   email?: true
+  videoClass?: true
   isActive?: true
   createAt?: true
 }
@@ -81,6 +86,7 @@ export type AllowedEmailMaxAggregateInputType = {
 export type AllowedEmailCountAggregateInputType = {
   id?: true
   email?: true
+  videoClass?: true
   isActive?: true
   createAt?: true
   _all?: true
@@ -175,6 +181,7 @@ export type AllowedEmailGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type AllowedEmailGroupByOutputType = {
   id: number
   email: string
+  videoClass: $Enums.VideoClass
   isActive: boolean
   createAt: Date
   _count: AllowedEmailCountAggregateOutputType | null
@@ -205,6 +212,7 @@ export type AllowedEmailWhereInput = {
   NOT?: Prisma.AllowedEmailWhereInput | Prisma.AllowedEmailWhereInput[]
   id?: Prisma.IntFilter<"AllowedEmail"> | number
   email?: Prisma.StringFilter<"AllowedEmail"> | string
+  videoClass?: Prisma.EnumVideoClassFilter<"AllowedEmail"> | $Enums.VideoClass
   isActive?: Prisma.BoolFilter<"AllowedEmail"> | boolean
   createAt?: Prisma.DateTimeFilter<"AllowedEmail"> | Date | string
 }
@@ -212,6 +220,7 @@ export type AllowedEmailWhereInput = {
 export type AllowedEmailOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  videoClass?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   _relevance?: Prisma.AllowedEmailOrderByRelevanceInput
@@ -223,6 +232,7 @@ export type AllowedEmailWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AllowedEmailWhereInput | Prisma.AllowedEmailWhereInput[]
   OR?: Prisma.AllowedEmailWhereInput[]
   NOT?: Prisma.AllowedEmailWhereInput | Prisma.AllowedEmailWhereInput[]
+  videoClass?: Prisma.EnumVideoClassFilter<"AllowedEmail"> | $Enums.VideoClass
   isActive?: Prisma.BoolFilter<"AllowedEmail"> | boolean
   createAt?: Prisma.DateTimeFilter<"AllowedEmail"> | Date | string
 }, "id" | "email">
@@ -230,6 +240,7 @@ export type AllowedEmailWhereUniqueInput = Prisma.AtLeast<{
 export type AllowedEmailOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  videoClass?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   _count?: Prisma.AllowedEmailCountOrderByAggregateInput
@@ -245,12 +256,14 @@ export type AllowedEmailScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AllowedEmailScalarWhereWithAggregatesInput | Prisma.AllowedEmailScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"AllowedEmail"> | number
   email?: Prisma.StringWithAggregatesFilter<"AllowedEmail"> | string
+  videoClass?: Prisma.EnumVideoClassWithAggregatesFilter<"AllowedEmail"> | $Enums.VideoClass
   isActive?: Prisma.BoolWithAggregatesFilter<"AllowedEmail"> | boolean
   createAt?: Prisma.DateTimeWithAggregatesFilter<"AllowedEmail"> | Date | string
 }
 
 export type AllowedEmailCreateInput = {
   email: string
+  videoClass?: $Enums.VideoClass
   isActive?: boolean
   createAt?: Date | string
 }
@@ -258,12 +271,14 @@ export type AllowedEmailCreateInput = {
 export type AllowedEmailUncheckedCreateInput = {
   id?: number
   email: string
+  videoClass?: $Enums.VideoClass
   isActive?: boolean
   createAt?: Date | string
 }
 
 export type AllowedEmailUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  videoClass?: Prisma.EnumVideoClassFieldUpdateOperationsInput | $Enums.VideoClass
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -271,6 +286,7 @@ export type AllowedEmailUpdateInput = {
 export type AllowedEmailUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  videoClass?: Prisma.EnumVideoClassFieldUpdateOperationsInput | $Enums.VideoClass
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -278,12 +294,14 @@ export type AllowedEmailUncheckedUpdateInput = {
 export type AllowedEmailCreateManyInput = {
   id?: number
   email: string
+  videoClass?: $Enums.VideoClass
   isActive?: boolean
   createAt?: Date | string
 }
 
 export type AllowedEmailUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  videoClass?: Prisma.EnumVideoClassFieldUpdateOperationsInput | $Enums.VideoClass
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -291,6 +309,7 @@ export type AllowedEmailUpdateManyMutationInput = {
 export type AllowedEmailUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  videoClass?: Prisma.EnumVideoClassFieldUpdateOperationsInput | $Enums.VideoClass
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -304,6 +323,7 @@ export type AllowedEmailOrderByRelevanceInput = {
 export type AllowedEmailCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  videoClass?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
 }
@@ -315,6 +335,7 @@ export type AllowedEmailAvgOrderByAggregateInput = {
 export type AllowedEmailMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  videoClass?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
 }
@@ -322,12 +343,17 @@ export type AllowedEmailMaxOrderByAggregateInput = {
 export type AllowedEmailMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  videoClass?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
 }
 
 export type AllowedEmailSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+}
+
+export type EnumVideoClassFieldUpdateOperationsInput = {
+  set?: $Enums.VideoClass
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -339,6 +365,7 @@ export type BoolFieldUpdateOperationsInput = {
 export type AllowedEmailSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
+  videoClass?: boolean
   isActive?: boolean
   createAt?: boolean
 }, ExtArgs["result"]["allowedEmail"]>
@@ -348,11 +375,12 @@ export type AllowedEmailSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type AllowedEmailSelectScalar = {
   id?: boolean
   email?: boolean
+  videoClass?: boolean
   isActive?: boolean
   createAt?: boolean
 }
 
-export type AllowedEmailOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "isActive" | "createAt", ExtArgs["result"]["allowedEmail"]>
+export type AllowedEmailOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "videoClass" | "isActive" | "createAt", ExtArgs["result"]["allowedEmail"]>
 
 export type $AllowedEmailPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AllowedEmail"
@@ -360,6 +388,7 @@ export type $AllowedEmailPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     email: string
+    videoClass: $Enums.VideoClass
     isActive: boolean
     createAt: Date
   }, ExtArgs["result"]["allowedEmail"]>
@@ -733,6 +762,7 @@ export interface Prisma__AllowedEmailClient<T, Null = never, ExtArgs extends run
 export interface AllowedEmailFieldRefs {
   readonly id: Prisma.FieldRef<"AllowedEmail", 'Int'>
   readonly email: Prisma.FieldRef<"AllowedEmail", 'String'>
+  readonly videoClass: Prisma.FieldRef<"AllowedEmail", 'VideoClass'>
   readonly isActive: Prisma.FieldRef<"AllowedEmail", 'Boolean'>
   readonly createAt: Prisma.FieldRef<"AllowedEmail", 'DateTime'>
 }

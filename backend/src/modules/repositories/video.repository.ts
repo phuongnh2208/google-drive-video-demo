@@ -22,6 +22,7 @@ export class VideoRepository implements IVideoRepository {
       where: {
         accessLevel: accessLevel,
       },
+      orderBy: { id: 'asc' },
     });
   }
 }

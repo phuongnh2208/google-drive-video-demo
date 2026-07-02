@@ -7,9 +7,11 @@ import { GetPublicVideosUseCase } from './use-cases/get-public-videos.usecase';
 import { GetPrivateVideosUseCase } from './use-cases/get-private-videos.usecase';
 import { GetAllowedVideosUseCase } from './use-cases/get-allowed-videos.usecase';
 import { AuthModule } from '../auth/auth.module';
+import { UserModule } from '../users/user.module';
+import { DriveService } from './drive.service';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule, UserModule],
   controllers: [VideoController],
   providers: [
     VideoRepository,
@@ -18,6 +20,7 @@ import { AuthModule } from '../auth/auth.module';
     GetPublicVideosUseCase,
     GetPrivateVideosUseCase,
     GetAllowedVideosUseCase,
+    DriveService,
   ],
 })
 export class VideoModule {}

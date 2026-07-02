@@ -62,3 +62,6 @@ export type VideoAccessLog = Prisma.VideoAccessLogModel
 
 export type AccessLevel = $Enums.AccessLevel
 export const AccessLevel = $Enums.AccessLevel
+
+export type VideoClass = $Enums.VideoClass
+export const VideoClass = $Enums.VideoClass

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Req, UseGuards } from '@nestjs/common';
 import { FindAllVideosUseCase } from './use-cases/find-all-video.usecase';
 import { FindVideoByIdUseCase } from './use-cases/find-video-by-id.usecase';
 import { GetPublicVideosUseCase } from './use-cases/get-public-videos.usecase';
@@ -18,6 +18,7 @@ export class VideoController {
   ) {}
 
   @Get()
+  @UseGuards(AuthGuard)
   async findAll() {
     return await this.findAllVideoUseCase.executive();
   }
@@ -35,11 +36,12 @@ export class VideoController {
 
   @Get('allowed')
   @UseGuards(AuthGuard, EmailWhitelistGuard)
-  async findAllowed() {
-    return await this.getAllowedVideosUseCase.executive();
+  async findAllowed(@Req() req: any) {
+    return await this.getAllowedVideosUseCase.executive(req.user.email);
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   async findOne(@Param('id') id: string) {
     return await this.findVideoByIdUseCase.executive(Number(id));
   }

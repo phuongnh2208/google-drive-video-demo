@@ -115,9 +115,26 @@ export type EnumAccessLevelWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumAccessLevelFilter<$PrismaModel>
 }
 
+export type EnumVideoClassFilter<$PrismaModel = never> = {
+  equals?: $Enums.VideoClass | Prisma.EnumVideoClassFieldRefInput<$PrismaModel>
+  in?: $Enums.VideoClass[]
+  notIn?: $Enums.VideoClass[]
+  not?: Prisma.NestedEnumVideoClassFilter<$PrismaModel> | $Enums.VideoClass
+}
+
 export type BoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
+}
+
+export type EnumVideoClassWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VideoClass | Prisma.EnumVideoClassFieldRefInput<$PrismaModel>
+  in?: $Enums.VideoClass[]
+  notIn?: $Enums.VideoClass[]
+  not?: Prisma.NestedEnumVideoClassWithAggregatesFilter<$PrismaModel> | $Enums.VideoClass
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVideoClassFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVideoClassFilter<$PrismaModel>
 }
 
 export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -273,9 +290,26 @@ export type NestedEnumAccessLevelWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumAccessLevelFilter<$PrismaModel>
 }
 
+export type NestedEnumVideoClassFilter<$PrismaModel = never> = {
+  equals?: $Enums.VideoClass | Prisma.EnumVideoClassFieldRefInput<$PrismaModel>
+  in?: $Enums.VideoClass[]
+  notIn?: $Enums.VideoClass[]
+  not?: Prisma.NestedEnumVideoClassFilter<$PrismaModel> | $Enums.VideoClass
+}
+
 export type NestedBoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
+}
+
+export type NestedEnumVideoClassWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VideoClass | Prisma.EnumVideoClassFieldRefInput<$PrismaModel>
+  in?: $Enums.VideoClass[]
+  notIn?: $Enums.VideoClass[]
+  not?: Prisma.NestedEnumVideoClassWithAggregatesFilter<$PrismaModel> | $Enums.VideoClass
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVideoClassFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVideoClassFilter<$PrismaModel>
 }
 
 export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {

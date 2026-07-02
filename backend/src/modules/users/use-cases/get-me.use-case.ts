@@ -4,10 +4,14 @@ import { UserRepository } from '../../repositories/user.repository';
 import { UserMapper } from '../mappers/user.mapper';
 import { UserResponseDto } from '../dto/user-response.dto';
 import { UserError } from '../constants/user.errors';
+import { MembershipService } from '../services/membership.service';
 
 @Injectable()
 export class GetMeUseCase {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly membershipService: MembershipService,
+  ) {}
 
   async executive(userId: number): Promise<UserResponseDto> {
     const user = await this.userRepository.findById(userId);
@@ -15,6 +19,7 @@ export class GetMeUseCase {
       throw new AppException(UserError.NOT_FOUND);
     }
 
-    return UserMapper.toResponseDto(user);
+    const videoClass = await this.membershipService.getVideoClass(user.email);
+    return UserMapper.toResponseDto(user, videoClass);
   }
 }

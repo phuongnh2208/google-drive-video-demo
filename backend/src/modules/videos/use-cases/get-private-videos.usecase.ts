@@ -9,12 +9,14 @@ import { AccessLevel } from 'src/generated/prisma/client';
 @Injectable()
 export class GetPrivateVideosUseCase {
   constructor(private readonly videoRepository: VideoRepository) {}
+
   async executive(): Promise<VideoResponseDto[]> {
     const videos = await this.videoRepository.findByAccessLevel(
       AccessLevel.PRIVATE,
     );
-    if (!videos || videos.length === 0)
+    if (!videos || videos.length === 0) {
       throw new AppException(VideoError.NOT_FOUND);
+    }
     return VideoMapper.toResponseDtoArray(videos);
   }
 }

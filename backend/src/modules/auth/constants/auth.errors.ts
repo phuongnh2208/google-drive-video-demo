@@ -18,7 +18,12 @@ export const AuthError = {
   },
   EMAIL_NOT_ALLOWED: {
     code: 'AUTH.EMAIL_NOT_ALLOWED',
-    message: 'Email của bạn không có quyền truy cập',
+    message: 'Email của bạn chưa được đăng ký trong hệ thống',
+    statusCode: HttpStatus.FORBIDDEN,
+  },
+  WRONG_VIDEO_CLASS: {
+    code: 'AUTH.WRONG_VIDEO_CLASS',
+    message: 'Bạn không thuộc lớp được phép xem video này',
     statusCode: HttpStatus.FORBIDDEN,
   },
 } as const;

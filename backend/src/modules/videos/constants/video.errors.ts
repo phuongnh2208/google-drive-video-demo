@@ -35,4 +35,10 @@ export const VideoError = {
     message: 'Mã Google Drive File ID này đã tồn tại trong hệ thống',
     statusCode: HttpStatus.CONFLICT,
   },
+
+  MEMBERSHIP_REQUIRED: {
+    code: 'VIDEO.MEMBERSHIP_REQUIRED',
+    message: 'Email của bạn chưa được cấp quyền ALLOWED',
+    statusCode: HttpStatus.FORBIDDEN,
+  },
 } as const;

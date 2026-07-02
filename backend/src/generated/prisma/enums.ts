@@ -14,3 +14,11 @@ export const AccessLevel = {
 } as const
 
 export type AccessLevel = (typeof AccessLevel)[keyof typeof AccessLevel]
+
+
+export const VideoClass = {
+  CLASS_A: 'CLASS_A',
+  CLASS_B: 'CLASS_B'
+} as const
+
+export type VideoClass = (typeof VideoClass)[keyof typeof VideoClass]

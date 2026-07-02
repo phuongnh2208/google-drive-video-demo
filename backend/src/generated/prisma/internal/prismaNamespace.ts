@@ -749,6 +749,7 @@ export type VideoScalarFieldEnum = (typeof VideoScalarFieldEnum)[keyof typeof Vi
 export const AllowedEmailScalarFieldEnum = {
   id: 'id',
   email: 'email',
+  videoClass: 'videoClass',
   isActive: 'isActive',
   createAt: 'createAt'
 } as const
@@ -839,6 +840,13 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'AccessLevel'
  */
 export type EnumAccessLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccessLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'VideoClass'
+ */
+export type EnumVideoClassFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VideoClass'>
     
 
 

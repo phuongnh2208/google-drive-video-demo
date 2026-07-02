@@ -4,4 +4,5 @@ export class UserResponseDto {
   name!: string;
   picture!: string;
   createAt!: Date;
+  videoClass!: 'CLASS_A' | 'CLASS_B' | null;
 }

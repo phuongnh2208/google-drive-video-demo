@@ -22,6 +22,11 @@ enum AccessLevel {
   ALLOWED
 }
 
+enum VideoClass {
+  CLASS_A
+  CLASS_B
+}
+
 model User {
   id            Int @id @default(autoincrement())
   googleId      String @unique
@@ -47,6 +52,7 @@ model Video {
 model AllowedEmail {
   id            Int @id @default(autoincrement())
   email         String @unique
+  videoClass    VideoClass @default(CLASS_A)
   isActive      Boolean @default(true)
   createAt      DateTime @default(now())
 }
